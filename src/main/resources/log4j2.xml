@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="net.minecraft,com.mojang">
+    <Appenders>
+        <Console name="SysOut" target="SYSTEM_OUT">
+            <PatternLayout pattern="%cyan{[%d{HH:mm:ss.SSS}]} %style{%highlight{[%level]}}{bright} %logger{1.} %cyan{>} %msg%n"/>
+        </Console>
+        <Queue name="ServerGuiConsole">
+            <PatternLayout pattern="%cyan{[%d{HH:mm:ss.SSS}]} %style{%highlight{[%level]}}{bright} %logger{1.} %cyan{>} %msg%n" />
+        </Queue>
+        <RollingRandomAccessFile name="File" fileName="logs/latest.log" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="[%d{HH:mm:ss.SSS}] | [%level] %logger{1.} > %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <OnStartupTriggeringPolicy />
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="SysOut"/>
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="ServerGuiConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>
